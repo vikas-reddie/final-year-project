@@ -13,7 +13,7 @@ app = Flask(__name__)
 # Directory to store uploaded images
 UPLOAD_FOLDER = 'static/uploads/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 # Load model
 model_save_path = "model.h5"
 model = load_model(model_save_path)
@@ -23,7 +23,7 @@ test_datagen = ImageDataGenerator(rescale=1.0/255)
 
 # Load validation data to get class labels
 validation_generator = test_datagen.flow_from_directory(
-    r"C:\Users\bvred\OneDrive\Desktop\project final year\tomato\New Plant Diseases Dataset(Augmented)\DATASET TOMOTO\valid",
+    'static/dataset/valid',
     target_size=(224, 224),
     batch_size=32,
     class_mode='categorical',
@@ -90,5 +90,5 @@ def send_uploaded_file(filename=''):
     return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=10000, debug=True)
 
