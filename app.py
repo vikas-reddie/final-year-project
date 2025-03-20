@@ -23,7 +23,7 @@ test_datagen = ImageDataGenerator(rescale=1.0/255)
 
 # Load validation data to get class labels
 validation_generator = test_datagen.flow_from_directory(
-    'tomato\New Plant Diseases Dataset(Augmented)\DATASET TOMOTO\valid',
+    'tomato/New Plant Diseases Dataset(Augmented)/DATASET TOMOTO/valid',
     target_size=(224, 224),
     batch_size=32,
     class_mode='categorical',
